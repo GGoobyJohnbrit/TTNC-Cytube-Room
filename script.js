@@ -49,3 +49,4 @@
 
     window.addEventListener("load", addEmotePanel);
 })();
+console.log("JS is working!")
