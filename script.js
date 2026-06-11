@@ -1,16 +1,51 @@
-const messages = [
-  "Weird stuff might happen",
-  "idk",
-  "by ggoobyjohnbrit",
-  "TTNC JS is working ",
-  "Please ignore this msg :P"
-];
+(function () {
+    function addEmotePanel() {
+        const btn = document.createElement("button");
+        btn.innerText = "text emotes";
+        btn.style.position = "fixed";
+        btn.style.bottom = "10px";
+        btn.style.right = "10px";
+        btn.style.zIndex = 9999;
+        btn.style.padding = "8px";
+        btn.style.cursor = "pointer";
 
-function updateText() {
-  const el = document.getElementById("randomText");
-  if (!el) return;
-  el.textContent = messages[Math.floor(Math.random() * messages.length)];
-}
+        const panel = document.createElement("div");
+        panel.style.position = "fixed";
+        panel.style.bottom = "50px";
+        panel.style.right = "10px";
+        panel.style.background = "#222";
+        panel.style.color = "white";
+        panel.style.padding = "10px";
+        panel.style.display = "none";
+        panel.style.zIndex = 9999;
+        panel.style.borderRadius = "6px";
 
-setInterval(updateText, 2000);
-updateText();
+        const emotes = [":)", ":(", ";-;", ":/", ":D", "D:", ":P", ":3", ":O", ":]", ":[", ":<", ":>", ":V"];
+
+        emotes.forEach(e => {
+            const ebtn = document.createElement("button");
+            ebtn.innerText = e;
+            ebtn.style.margin = "4px";
+            ebtn.style.cursor = "pointer";
+
+            ebtn.onclick = function () {
+                const chatInput = document.getElementById("chatline");
+                if (chatInput) {
+                    chatInput.value += e;
+                    chatInput.focus();
+                }
+            };
+
+            panel.appendChild(ebtn);
+        });
+
+        btn.onclick = function () {
+            panel.style.display = panel.style.display === "none" ? "block" : "none";
+        };
+
+        document.body.appendChild(btn);
+        document.body.appendChild(panel);
+    }
+
+    window.addEventListener("load", addEmotePanel);
+})();
