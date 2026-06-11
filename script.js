@@ -1,6 +1,6 @@
 (function () {
     function addEmotePanel() {
-
+ 
         if (document.getElementById("emote-panel")) return;
 
         const btn = document.createElement("button");
